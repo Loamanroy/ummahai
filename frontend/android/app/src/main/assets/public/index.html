@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#00ff88" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="UMMAH AI" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="UMMAH AI Platform" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/icon-192x192.png" />
+    
+    <!-- Standard Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-192x192.png" />
+    <link rel="shortcut icon" href="/icon-192x192.png" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="data:application/octet-stream;base64,aW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JwppbXBvcnQgUmVhY3RET00gZnJvbSAncmVhY3QtZG9tL2NsaWVudCcKaW1wb3J0ICcuL3BvbHlmaWxscycKaW1wb3J0IEFwcCBmcm9tICcuL0FwcC50c3gnCmltcG9ydCAnLi9pbmRleC5jc3MnCgppZiAoJ3NlcnZpY2VXb3JrZXInIGluIG5hdmlnYXRvciAmJiBpbXBvcnQubWV0YS5lbnYuTU9ERSA9PT0gJ3Byb2R1Y3Rpb24nKSB7CiAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ2xvYWQnLCBhc3luYyAoKSA9PiB7CiAgICB0cnkgewogICAgICBjb25zdCByZWdpc3RyYXRpb24gPSBhd2FpdCBuYXZpZ2F0b3Iuc2VydmljZVdvcmtlci5yZWdpc3RlcignL3N3LmpzJywgewogICAgICAgIHNjb3BlOiAnLycKICAgICAgfSk7CiAgICAgIAogICAgICBjb25zb2xlLmxvZygnU1cgcmVnaXN0ZXJlZCBzdWNjZXNzZnVsbHk6JywgcmVnaXN0cmF0aW9uLnNjb3BlKTsKICAgICAgCiAgICAgIHJlZ2lzdHJhdGlvbi5hZGRFdmVudExpc3RlbmVyKCd1cGRhdGVmb3VuZCcsICgpID0+IHsKICAgICAgICBjb25zdCBuZXdXb3JrZXIgPSByZWdpc3RyYXRpb24uaW5zdGFsbGluZzsKICAgICAgICBpZiAobmV3V29ya2VyKSB7CiAgICAgICAgICBuZXdXb3JrZXIuYWRkRXZlbnRMaXN0ZW5lcignc3RhdGVjaGFuZ2UnLCAoKSA9PiB7CiAgICAgICAgICAgIGlmIChuZXdXb3JrZXIuc3RhdGUgPT09ICdpbnN0YWxsZWQnICYmIG5hdmlnYXRvci5zZXJ2aWNlV29ya2VyLmNvbnRyb2xsZXIpIHsKICAgICAgICAgICAgICBjb25zb2xlLmxvZygnTmV3IHNlcnZpY2Ugd29ya2VyIGF2YWlsYWJsZSwgY29uc2lkZXIgcmVmcmVzaGluZycpOwogICAgICAgICAgICB9CiAgICAgICAgICB9KTsKICAgICAgICB9CiAgICAgIH0pOwogICAgICAKICAgIH0gY2F0Y2ggKGVycm9yKSB7CiAgICAgIGNvbnNvbGUuZXJyb3IoJ1NXIHJlZ2lzdHJhdGlvbiBmYWlsZWQ6JywgZXJyb3IpOwogICAgfQogIH0pOwp9Cgpjb25zdCByZXBvcnRXZWJWaXRhbHMgPSAobWV0cmljOiBhbnkpID0+IHsKICBpZiAoaW1wb3J0Lm1ldGEuZW52Lk1PREUgPT09ICdkZXZlbG9wbWVudCcpIHsKICAgIGNvbnNvbGUubG9nKGAke21ldHJpYy5uYW1lfTogJHttZXRyaWMudmFsdWV9YCk7CiAgfQogIAogIGlmIChpbXBvcnQubWV0YS5lbnYuTU9ERSA9PT0gJ3Byb2R1Y3Rpb24nICYmICh3aW5kb3cgYXMgYW55KS5ndGFnKSB7CiAgICAod2luZG93IGFzIGFueSkuZ3RhZygnZXZlbnQnLCBtZXRyaWMubmFtZSwgewogICAgICBldmVudF9jYXRlZ29yeTogJ1dlYiBWaXRhbHMnLAogICAgICB2YWx1ZTogTWF0aC5yb3VuZChtZXRyaWMubmFtZSA9PT0gJ0NMUycgPyBtZXRyaWMudmFsdWUgKiAxMDAwIDogbWV0cmljLnZhbHVlKSwKICAgICAgbm9uX2ludGVyYWN0aW9uOiB0cnVlLAogICAgfSk7CiAgfQp9OwoKaWYgKHR5cGVvZiB3aW5kb3cgIT09ICd1bmRlZmluZWQnKSB7CiAgaW1wb3J0KCd3ZWItdml0YWxzJykudGhlbigod2ViVml0YWxzKSA9PiB7CiAgICBjb25zdCB7IG9uQ0xTLCBvbklOUCwgb25GQ1AsIG9uTENQLCBvblRURkIgfSA9IHdlYlZpdGFsczsKICAgIGlmIChvbkNMUykgb25DTFMocmVwb3J0V2ViVml0YWxzKTsKICAgIGlmIChvbklOUCkgb25JTlAocmVwb3J0V2ViVml0YWxzKTsKICAgIGlmIChvbkZDUCkgb25GQ1AocmVwb3J0V2ViVml0YWxzKTsKICAgIGlmIChvbkxDUCkgb25MQ1AocmVwb3J0V2ViVml0YWxzKTsKICAgIGlmIChvblRURkIpIG9uVFRGQihyZXBvcnRXZWJWaXRhbHMpOwogIH0pLmNhdGNoKCgpID0+IHsKICAgIGNvbnNvbGUubG9nKCdXZWIgdml0YWxzIG5vdCBhdmFpbGFibGUnKTsKICB9KTsKfQoKUmVhY3RET00uY3JlYXRlUm9vdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncm9vdCcpISkucmVuZGVyKAogIDxSZWFjdC5TdHJpY3RNb2RlPgogICAgPEFwcCAvPgogIDwvUmVhY3QuU3RyaWN0TW9kZT4sCikK" as="script" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <title>UMMAH AI Platform - Quantum Trading</title>
+    <meta name="description" content="Advanced AI-driven cryptocurrency trading platform with quantum-enhanced prediction algorithms and immersive AR/XR interface" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ummah-ai.com/" />
+    <meta property="og:title" content="UMMAH AI Platform - Quantum Trading" />
+    <meta property="og:description" content="Advanced AI-driven cryptocurrency trading platform with quantum-enhanced prediction algorithms" />
+    <meta property="og:image" content="/screenshot-wide.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ummah-ai.com/" />
+    <meta property="twitter:title" content="UMMAH AI Platform - Quantum Trading" />
+    <meta property="twitter:description" content="Advanced AI-driven cryptocurrency trading platform with quantum-enhanced prediction algorithms" />
+    <meta property="twitter:image" content="/screenshot-wide.png" />
+    <script type="module" crossorigin src="/assets/index-qvyquVZZ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-e4fu8oQ2.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-three-ULghQGFO.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-utils-Ms3aQSpU.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-ui-CIlOX7o0.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-charts-DMm1PkpN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CEwLQidd.css">
+  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+              
+              // Check for updates
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // New content available, notify user
+                    if (confirm('New version available! Reload to update?')) {
+                      newWorker.postMessage({ type: 'SKIP_WAITING' });
+                      window.location.reload();
+                    }
+                  }
+                });
+              });
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+        
+        // Handle service worker updates
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          window.location.reload();
+        });
+      }
+      
+      // Install prompt for PWA
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Show install button or banner
+        const installBanner = document.createElement('div');
+        installBanner.innerHTML = `
+          <div style="position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #00ff88, #0088ff); color: white; padding: 12px; text-align: center; z-index: 10000; font-family: system-ui;">
+            <span>📱 Install UMMAH AI Platform for the best experience!</span>
+            <button onclick="installPWA()" style="margin-left: 12px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Install</button>
+            <button onclick="this.parentElement.parentElement.remove()" style="margin-left: 8px; background: transparent; border: none; color: white; cursor: pointer; font-size: 18px;">×</button>
+          </div>
+        `;
+        document.body.appendChild(installBanner);
+      });
+      
+      window.installPWA = async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User response to the install prompt: ${outcome}`);
+          deferredPrompt = null;
+          
+          // Remove install banner
+          const banner = document.querySelector('[style*="position: fixed"]');
+          if (banner) banner.remove();
+        }
+      };
+    </script>
+  </body>
+</html>
