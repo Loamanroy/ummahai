@@ -1,0 +1,513 @@
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { Clock, Sun, Moon, Wallet, Menu, X, Activity, TrendingUp, Shield, Zap } from 'lucide-react'
+import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { MetricCard } from './components/ui/MetricCard'
+
+function App() {
+  console.log('🚀 NEW App.tsx component loaded with Performance Showcase!')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [currentTime, setCurrentTime] = useState(new Date())
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const profitData = [
+    { name: 'Jan', profit: 4000, trades: 24 },
+    { name: 'Feb', profit: 3000, trades: 18 },
+    { name: 'Mar', profit: 5000, trades: 32 },
+    { name: 'Apr', profit: 7800, trades: 45 },
+    { name: 'May', profit: 8900, trades: 52 },
+    { name: 'Jun', profit: 12400, trades: 67 },
+  ]
+
+  const performanceData = [
+    { name: 'Week 1', winRate: 85, volume: 120000 },
+    { name: 'Week 2', winRate: 88, volume: 135000 },
+    { name: 'Week 3', winRate: 82, volume: 98000 },
+    { name: 'Week 4', winRate: 91, volume: 156000 },
+  ]
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', { 
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    })
+  }
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-white">
+      <header className="bg-slate-800 border-b border-slate-700 px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
+            >
+              {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+            
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
+                <span className="text-sm font-bold">U</span>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold">UMMAH AI Platform</h1>
+                <p className="text-xs text-slate-400">Quantum-Class Mesh Liquidity AI</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 px-3 py-1 bg-slate-700 rounded-lg">
+              <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
+              <span className="text-sm text-slate-300">CerebellumBot vX: Active & Breathing</span>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <button className="px-3 py-1 text-xs bg-teal-500/20 text-teal-400 rounded border border-teal-500">
+                Active
+              </button>
+              <button className="px-3 py-1 text-xs bg-blue-500/20 text-blue-400 rounded border border-blue-500">
+                Guide
+              </button>
+              <button className="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded border border-purple-500">
+                Simple View
+              </button>
+              <button className="px-3 py-1 text-xs bg-blue-500/20 text-blue-400 rounded border border-blue-500">
+                Themes
+              </button>
+              <button className="px-3 py-1 text-xs bg-green-500/20 text-green-400 rounded border border-green-500">
+                Layout
+              </button>
+              <button className="px-3 py-1 text-xs bg-teal-500 text-white rounded">
+                Investor Registration
+              </button>
+              <button className="px-3 py-1 text-xs bg-green-600 text-white rounded">
+                PARANOIA: OFF
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <motion.div
+        className={`fixed left-0 top-16 h-full w-64 bg-slate-800 border-r border-slate-700 z-40 transform transition-transform duration-300 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+        initial={false}
+        animate={{ x: sidebarOpen ? 0 : -256 }}
+      >
+        <div className="p-4">
+          <nav className="space-y-2">
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+              Trading & Markets
+            </div>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors flex items-center space-x-2">
+              <TrendingUp size={16} />
+              <span>Live Trading</span>
+            </button>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors flex items-center space-x-2">
+              <Activity size={16} />
+              <span>Market Analysis</span>
+            </button>
+            
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 mt-6">
+              AI & Analytics
+            </div>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors">
+              AI Modules Overview
+            </button>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors">
+              Quantum Predictor
+            </button>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors">
+              Risk Management
+            </button>
+          </nav>
+        </div>
+      </motion.div>
+
+      <main className={`transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'} pt-4`}>
+        <div className="px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <Clock className="text-teal-400" size={24} />
+                <h3 className="text-lg font-semibold">Real-Time Clock</h3>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-mono font-bold text-teal-400 mb-2">
+                  {formatTime(currentTime)}
+                </div>
+                <div className="text-sm text-slate-400">
+                  {formatDate(currentTime)}
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <Sun className="text-yellow-400" size={24} />
+                <h3 className="text-lg font-semibold">Weather</h3>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold mb-2">22°C</div>
+                <div className="text-sm text-slate-400">Sunny, Clear Sky</div>
+                <div className="text-xs text-slate-500 mt-2">New York, NY</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <Moon className="text-purple-400" size={24} />
+                <h3 className="text-lg font-semibold">Prayer Times</h3>
+              </div>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Fajr</span>
+                  <span>05:30</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Dhuhr</span>
+                  <span>12:45</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Asr</span>
+                  <span>16:20</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Maghrib</span>
+                  <span>19:15</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-400">Isha</span>
+                  <span>20:45</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="mb-8">
+            <motion.h2 
+              className="text-2xl font-bold text-slate-100 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Performance Showcase
+            </motion.h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+              <MetricCard
+                title="Total Profit"
+                value="$24,567.89"
+                icon={<TrendingUp size={20} />}
+                trend="up"
+                trendValue="+12.5% this month"
+              />
+              
+              <MetricCard
+                title="Win Rate"
+                value="87.3%"
+                icon={<Activity size={20} />}
+                trend="up"
+                trendValue="+2.1% this week"
+              />
+              
+              <MetricCard
+                title="Active Trades"
+                value={42}
+                icon={<Zap size={20} />}
+                trend="neutral"
+                trendValue="Stable volume"
+              />
+              
+              <MetricCard
+                title="Risk Score"
+                value="2.4/10"
+                icon={<Shield size={20} />}
+                trend="down"
+                trendValue="Low risk maintained"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <motion.div
+                className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+              >
+                <h3 className="text-lg font-semibold text-slate-100 mb-4">Profit Trend</h3>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={profitData}>
+                      <defs>
+                        <linearGradient id="profitGradient" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#14B8A6" stopOpacity={0.3}/>
+                          <stop offset="95%" stopColor="#14B8A6" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis dataKey="name" stroke="#9CA3AF" />
+                      <YAxis stroke="#9CA3AF" />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: '#1F2937', 
+                          border: '1px solid #374151',
+                          borderRadius: '8px',
+                          color: '#F3F4F6'
+                        }} 
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="profit" 
+                        stroke="#14B8A6" 
+                        strokeWidth={2}
+                        fill="url(#profitGradient)" 
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+              >
+                <h3 className="text-lg font-semibold text-slate-100 mb-4">Win Rate Performance</h3>
+                <div className="h-64">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={performanceData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                      <XAxis dataKey="name" stroke="#9CA3AF" />
+                      <YAxis stroke="#9CA3AF" />
+                      <Tooltip 
+                        contentStyle={{ 
+                          backgroundColor: '#1F2937', 
+                          border: '1px solid #374151',
+                          borderRadius: '8px',
+                          color: '#F3F4F6'
+                        }} 
+                      />
+                      <Line 
+                        type="monotone" 
+                        dataKey="winRate" 
+                        stroke="#14B8A6" 
+                        strokeWidth={3}
+                        dot={{ fill: '#14B8A6', strokeWidth: 2, r: 4 }}
+                        activeDot={{ r: 6, stroke: '#14B8A6', strokeWidth: 2 }}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <Wallet className="text-green-400" size={24} />
+                <h3 className="text-lg font-semibold">Wallet</h3>
+              </div>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Total Balance</span>
+                  <span className="text-xl font-bold text-green-400">$12,450.67</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">Available</span>
+                  <span className="text-green-400">$8,230.45</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-400">In Trading</span>
+                  <span className="text-yellow-400">$4,220.22</span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+            >
+              <div className="flex items-center space-x-3 mb-4">
+                <Shield className="text-teal-400" size={24} />
+                <h3 className="text-lg font-semibold">AI Modules</h3>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Quantum Predictor</span>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Risk Analyzer</span>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Market Scanner</span>
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Portfolio Optimizer</span>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Supported Exchanges Section */}
+          <motion.div
+            className="mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.0 }}
+          >
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">Supported Exchanges</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+              {[
+                { name: 'Binance', color: 'bg-yellow-500' },
+                { name: 'Bybit', color: 'bg-orange-500' },
+                { name: 'OKX', color: 'bg-blue-500' },
+                { name: 'Coinbase', color: 'bg-blue-600' },
+                { name: 'Kraken', color: 'bg-purple-600' },
+                { name: 'KuCoin', color: 'bg-green-500' }
+              ].map((exchange, index) => (
+                <motion.div
+                  key={exchange.name}
+                  className="bg-slate-800 border border-slate-700 rounded-lg p-4 hover:border-teal-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/10"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 1.0 + index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="flex flex-col items-center space-y-3">
+                    <div className={`w-12 h-12 ${exchange.color} rounded-lg flex items-center justify-center`}>
+                      <span className="text-white font-bold text-lg">
+                        {exchange.name.charAt(0)}
+                      </span>
+                    </div>
+                    <span className="text-sm font-medium text-slate-300">{exchange.name}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Privacy & Anonymity Section */}
+          <motion.div
+            className="mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
+          >
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">Privacy & Anonymity</h2>
+            <div className="bg-gradient-to-br from-teal-500/20 to-teal-600/10 border border-teal-500/30 rounded-lg p-8">
+              <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
+                <div className="flex-shrink-0">
+                  <div className="w-24 h-24 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center">
+                    <Shield className="text-white" size={40} />
+                  </div>
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-xl font-bold text-white mb-4">Complete Privacy Protection</h3>
+                  <p className="text-slate-300 mb-4">
+                    Your trading data is fully encrypted and anonymized. We use advanced cryptographic protocols 
+                    to ensure your financial information remains completely private and secure.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-teal-400 rounded-full"></div>
+                      <span className="text-sm text-slate-300">End-to-End Encryption</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-teal-400 rounded-full"></div>
+                      <span className="text-sm text-slate-300">Zero-Knowledge Architecture</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-teal-400 rounded-full"></div>
+                      <span className="text-sm text-slate-300">Anonymous Trading</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-teal-400 rounded-full"></div>
+                      <span className="text-sm text-slate-300">Secure Data Storage</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Newsletter Signup Footer */}
+          <motion.div
+            className="mt-16 mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.4 }}
+          >
+            <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 text-center">
+              <h2 className="text-2xl font-bold text-white mb-4">Stay Updated</h2>
+              <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
+                Subscribe to our newsletter to get the latest updates on new features, 
+                trading insights, and platform improvements delivered directly to your inbox.
+              </p>
+              <div className="flex flex-col sm:flex-row max-w-md mx-auto space-y-3 sm:space-y-0 sm:space-x-3">
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  className="flex-1 px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+                />
+                <button className="px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-800">
+                  Subscribe
+                </button>
+              </div>
+              <p className="text-xs text-slate-400 mt-4">
+                We respect your privacy. Unsubscribe at any time.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
+export default App

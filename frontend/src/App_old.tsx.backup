@@ -1,0 +1,729 @@
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { Clock, Sun, Moon, Wallet, Settings, Menu, X, Activity, TrendingUp, Shield, Zap } from 'lucide-react'
+
+function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [currentTime, setCurrentTime] = useState(new Date())
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('en-US', { 
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    })
+  }
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100">
+      {/* Header Navigation */}
+      <header className="bg-slate-800 border-b border-slate-700 px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
+            >
+              {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
+                <Zap size={16} className="text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-slate-100">UMMAH AI Platform</h1>
+                <p className="text-sm text-slate-400">Quantum-Class Mesh Liquidity AI</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 px-3 py-1 bg-slate-700 rounded-lg">
+              <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
+              <span className="text-sm text-slate-300">CerebellumBot vX: Active & Breathing</span>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <button className="px-3 py-1 text-xs bg-teal-500/20 text-teal-400 rounded border border-teal-500">
+                Guide
+              </button>
+              <button className="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded border border-purple-500">
+                Simple View
+              </button>
+              <button className="px-3 py-1 text-xs bg-blue-500/20 text-blue-400 rounded border border-blue-500">
+                Themes
+              </button>
+              <button className="px-3 py-1 text-xs bg-green-500/20 text-green-400 rounded border border-green-500">
+                Layout
+              </button>
+              <button className="px-3 py-1 text-xs bg-teal-500 text-white rounded">
+                Investor Registration
+              </button>
+              <button className="px-3 py-1 text-xs bg-green-600 text-white rounded">
+                PARANOIA: OFF
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Sidebar */}
+      <motion.div
+        className={`fixed left-0 top-16 h-full w-64 bg-slate-800 border-r border-slate-700 z-40 transform transition-transform duration-300 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+        initial={false}
+        animate={{ x: sidebarOpen ? 0 : -256 }}
+      >
+        <div className="p-4">
+          <nav className="space-y-2">
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+              Trading & Markets
+            </div>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors flex items-center space-x-2">
+              <TrendingUp size={16} />
+              <span>Live Trading</span>
+            </button>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors flex items-center space-x-2">
+              <Activity size={16} />
+              <span>Market Analysis</span>
+            </button>
+            
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 mt-6">
+              AI & Analytics
+            </div>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors">
+              AI Modules Overview
+            </button>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors">
+              Quantum Predictor
+            </button>
+            
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 mt-6">
+              Wallet & Security
+            </div>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors flex items-center space-x-2">
+              <Wallet size={16} />
+              <span>Wallet & Signing</span>
+            </button>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors flex items-center space-x-2">
+              <Shield size={16} />
+              <span>Security Settings</span>
+            </button>
+            
+            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 mt-6">
+              System
+            </div>
+            <button className="w-full text-left px-3 py-2 text-sm hover:bg-slate-700 rounded-lg transition-colors flex items-center space-x-2">
+              <Settings size={16} />
+              <span>Settings</span>
+            </button>
+          </nav>
+        </div>
+      </motion.div>
+
+      {/* Main Content */}
+      <main className={`transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'} pt-4`}>
+        <div className="px-6">
+          {/* Main Dashboard Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            {/* Real-Time Clock Card */}
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-center space-x-2 mb-4">
+                <Clock size={20} className="text-teal-400" />
+                <h3 className="text-lg font-semibold text-slate-100">Real-Time Clock</h3>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-mono font-bold text-teal-400 mb-2">
+                  {formatTime(currentTime)}
+                </div>
+                <div className="text-sm text-slate-300">
+                  {formatDate(currentTime)}
+                </div>
+                <div className="text-xs text-slate-400 mt-1">
+                  UTC +0:00
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Weather Card */}
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <div className="flex items-center space-x-2 mb-4">
+                <Sun size={20} className="text-teal-400" />
+                <h3 className="text-lg font-semibold text-slate-100">Weather</h3>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-slate-100 mb-2">
+                  Loading...
+                </div>
+                <div className="text-sm text-slate-300">
+                  Weather data unavailable
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Prayer Times Card */}
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="flex items-center space-x-2 mb-4">
+                <Moon size={20} className="text-teal-400" />
+                <h3 className="text-lg font-semibold text-slate-100">Prayer Times</h3>
+              </div>
+              <div className="space-y-2">
+                {[
+                  { name: 'Fajr الفجر', time: '05:46' },
+                  { name: 'Dhuhr الظهر', time: '13:17' },
+                  { name: 'Asr العصر', time: '17:24' },
+                  { name: 'Maghrib المغرب', time: '20:50', active: true },
+                  { name: 'Isha العشاء', time: '22:47' }
+                ].map((prayer) => (
+                  <div
+                    key={prayer.name}
+                    className={`flex justify-between items-center py-1 px-2 rounded ${
+                      prayer.active ? 'bg-teal-500/20 text-teal-400' : 'text-slate-300'
+                    }`}
+                  >
+                    <span className="text-sm">{prayer.name}</span>
+                    <span className="text-sm font-mono">{prayer.time}</span>
+                  </div>
+                ))}
+                <div className="mt-3 text-center">
+                  <div className="text-xs text-teal-400 font-semibold">
+                    Next Prayer: Maghrib at 20:56
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Wallet & AI Modules Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <div className="flex items-center space-x-2 mb-4">
+                <Wallet size={20} className="text-teal-400" />
+                <h3 className="text-lg font-semibold text-slate-100">Wallet & Signing</h3>
+              </div>
+              <div className="space-y-3">
+                <button className="w-full px-4 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg hover:opacity-90 transition-opacity">
+                  Connect Wallet
+                </button>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  {[
+                    'AES-256 + TLS 1.3 Encryption Layer',
+                    'ZK-Snark Tornado Cash',
+                    'IPFS Mirror Enabled',
+                    'CID Auto-Snapshot',
+                    'WalletConnect + MetaMask',
+                    'Firebase Auth Integration',
+                    'xSync Signature Routing',
+                    'IP Rotation Detection',
+                    'Session Replay Protection',
+                    'Wallet Graph Overlay',
+                    'Decentralized KYC Verification',
+                    'Optimistic Wallet Execution'
+                  ].map((feature) => (
+                    <div key={feature} className="text-xs text-slate-300 p-2 bg-slate-700 rounded">
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="bg-slate-800 border border-slate-700 rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="flex items-center space-x-2 mb-4">
+                <Activity size={20} className="text-teal-400" />
+                <h3 className="text-lg font-semibold text-slate-100">AI Modules Overview</h3>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {[
+                  'Reinforcement Loop Optimizer',
+                  'Mesh Routing Intelligence',
+                  'Predictive Signal Amplifier',
+                  'Quantum Entanglement Predictor',
+                  'Liquidity Flow Analyzer',
+                  'Real-time Pattern Recognition',
+                  'Monte Carlo Risk Engine',
+                  'Market Sentiment Oracle',
+                  'Cross-Chain Bridge Monitor',
+                  'Chaos Theory Price Predictor',
+                  'Behavioral Mimicry Engine',
+                  'Microscopic Order Analysis',
+                  'Deep Space Signal Processing',
+                  'Magnetic Field Trading AI',
+                  'Burn Rate Optimization',
+                  'Tornado Cash Integration',
+                  'Identity Masking Protocol',
+                  'Black Hole Liquidity Sink',
+                  'Sniper Bot Detection Evasion',
+                  'Rainbow Table Obfuscation',
+                  'Circuit Mirror Trading',
+                  'Microscopic Profit Extraction',
+                  'Fractal Market Analysis',
+                  'Tsunami Wave Pattern AI',
+                  'Artistic Price Movement AI',
+                  'Crystal Ball Market Oracle',
+                  'Theater Performance Trading',
+                  'Vortex Liquidity Capture'
+                ].map((module) => (
+                  <div key={module} className="text-slate-300 p-2 bg-slate-700 rounded hover:bg-slate-600 transition-colors">
+                    {module}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </main>
+    </div>
+  )
+}
+
+export default App
+        
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { name: 'AI Core', description: 'Advanced machine learning algorithms', delay: 0 },
+            { name: 'Trade Engine', description: 'High-frequency trading execution', delay: 0.1 },
+            { name: 'Market Data', description: 'Real-time market data feeds', delay: 0.2 },
+            { name: 'Risk Module', description: 'Advanced risk management', delay: 0.3 }
+          ].map((component) => (
+            <motion.div
+              key={component.name}
+              className="text-center group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: component.delay }}
+              viewport={{ once: true }}
+            >
+              <motion.div 
+                className="w-20 h-20 bg-gradient-to-r from-gray-700 to-gray-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gradient-to-r group-hover:from-teal-500 group-hover:to-teal-600 transition-all duration-300 cursor-pointer"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className="w-12 h-12 bg-teal-500 rounded-full group-hover:bg-white transition-colors duration-300"></div>
+              </motion.div>
+              <h3 className="font-semibold mb-2 group-hover:text-teal-400 transition-colors duration-300">{component.name}</h3>
+              <p className="text-sm text-gray-300 group-hover:text-gray-200 transition-colors duration-300">{component.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Supported Exchanges Section */}
+      <Section background="primary" padding="xl">
+        <div className="text-center mb-16">
+          <motion.h2 
+            className="text-4xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Supported Exchanges
+          </motion.h2>
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Connect seamlessly with major cryptocurrency exchanges worldwide
+          </motion.p>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+          {['Binance', 'Kraken', 'Coinbase', 'Bitfinex', 'Huobi', 'KuCoin'].map((exchange, index) => (
+            <motion.div
+              key={exchange}
+              className="text-center group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <GradientCard 
+                variant="subtle" 
+                padding="md" 
+                className="hover:border-teal-500/50 transition-all duration-300 cursor-pointer group-hover:scale-105"
+              >
+                <motion.div 
+                  className="w-12 h-12 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full mx-auto mb-3 group-hover:shadow-lg group-hover:shadow-teal-500/25 transition-all duration-300"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                />
+                <span className="text-sm font-medium group-hover:text-teal-400 transition-colors duration-300">{exchange}</span>
+              </GradientCard>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Privacy & Anonymity Section */}
+      <Section background="secondary" padding="xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.h2 
+              className="text-4xl font-bold mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              Privacy & Anonymity
+            </motion.h2>
+            <motion.h3 
+              className="text-xl font-semibold mb-4 text-teal-400"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Personal Mode
+            </motion.h3>
+            <motion.p 
+              className="text-gray-300 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              Our platform ensures complete privacy and anonymity for all users. Advanced encryption 
+              and decentralized architecture protect your trading data and personal information.
+            </motion.p>
+            <motion.ul 
+              className="space-y-3"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              {[
+                'End-to-end encryption',
+                'Zero-knowledge architecture', 
+                'Decentralized data storage',
+                'Anonymous trading protocols'
+              ].map((feature, index) => (
+                <motion.li 
+                  key={feature}
+                  className="flex items-center"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.div 
+                    className="w-2 h-2 bg-teal-500 rounded-full mr-3"
+                    whileHover={{ scale: 1.5 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                  <span className="text-gray-300 hover:text-white transition-colors duration-300">{feature}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
+          <motion.div 
+            className="relative"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <GradientCard variant="dark" padding="lg" className="h-64 flex items-center justify-center relative overflow-hidden">
+              <AnimatedBackground variant="particles" intensity="low" />
+              <motion.div 
+                className="w-32 h-32 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full relative z-10"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  opacity: [0.5, 0.8, 0.5]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div 
+                className="absolute inset-0 border-2 border-teal-400/30 rounded-lg"
+                animate={{ 
+                  borderColor: ['rgba(20,184,166,0.3)', 'rgba(20,184,166,0.6)', 'rgba(20,184,166,0.3)']
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </GradientCard>
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* Performance Showcase Section */}
+      <Section id="performance" background="primary" padding="xl">
+        <div className="text-center mb-16">
+          <motion.h2 
+            className="text-4xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Performance Showcase
+          </motion.h2>
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Real-time performance metrics showcasing our AI-driven trading success
+          </motion.p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0 }}
+            viewport={{ once: true }}
+          >
+            <MetricCard
+              title="Success Rate"
+              value="98.7%"
+              subtitle="AI Prediction Accuracy"
+              trend="up"
+              trendValue="+2.3%"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <MetricCard
+              title="Trading Volume"
+              value="$750M"
+              subtitle="Last 12 Months"
+              trend="up"
+              trendValue="+24%"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <MetricCard
+              title="Average Fees"
+              value="0.05%"
+              subtitle="Competitive Rates"
+              trend="down"
+              trendValue="-15%"
+            />
+          </motion.div>
+        </div>
+
+        <GradientCard variant="dark" padding="lg" className="mb-8">
+          <motion.h3 
+            className="text-2xl font-bold mb-6 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Monthly Performance Overview
+          </motion.h3>
+          <motion.p 
+            className="text-center text-gray-400 mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Last 12 Months • +24% Growth
+          </motion.p>
+          <div className="h-64 bg-gray-700 rounded-lg flex items-end justify-center p-4">
+            <div className="flex items-end space-x-2 h-full">
+              {[40, 60, 80, 45, 70, 90, 65, 85, 75, 95, 80, 70].map((height, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-gradient-to-t from-teal-500 to-teal-400 rounded-t"
+                  style={{ width: '20px' }}
+                  initial={{ height: 0 }}
+                  whileInView={{ height: `${height}%` }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                />
+              ))}
+            </div>
+          </div>
+        </GradientCard>
+      </Section>
+
+      {/* Footer */}
+      <footer className="relative bg-gray-700 overflow-hidden">
+        <AnimatedBackground variant="gradient" intensity="low" />
+        <div className="relative z-10 py-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <motion.div 
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.h2 
+                className="text-3xl font-bold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                Ready to Transform Your Trading?
+              </motion.h2>
+              <motion.p 
+                className="text-gray-300 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                Join thousands of traders who trust UMMAH AI for their cryptocurrency trading needs.
+              </motion.p>
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <motion.button 
+                  className="px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Launch the Platform
+                </motion.button>
+                <motion.button 
+                  className="px-8 py-4 border border-gray-600 text-gray-300 rounded-lg text-lg font-semibold hover:border-gray-400 hover:text-white transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Request Access
+                </motion.button>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <motion.h3 
+                className="text-xl font-bold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+              >
+                Stay Updated
+              </motion.h3>
+              <motion.p 
+                className="text-gray-300 mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1 }}
+                viewport={{ once: true }}
+              >
+                Subscribe to our newsletter to receive updates on new features, market insights, and platform improvements.
+              </motion.p>
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+                viewport={{ once: true }}
+              >
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-teal-400 transition-colors duration-300"
+                />
+                <motion.button 
+                  className="px-6 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Subscribe
+                </motion.button>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              className="border-t border-gray-600 mt-12 pt-8 text-center text-gray-400 text-sm"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.4 }}
+              viewport={{ once: true }}
+            >
+              <p>&copy; 2024 UMMAH AI Platform. All rights reserved.</p>
+            </motion.div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+export default App
